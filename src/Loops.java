@@ -29,6 +29,6 @@ public class Loops {
                     System.out.println("You didn't get it!");
                 }
             }
-        } while (!"q".equals(guessedNumStr));
+        } while (!"q".equals(guessedNumStr) && numberOfGuesses < 4);
     }
 }
