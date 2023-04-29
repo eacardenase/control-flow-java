@@ -3,20 +3,20 @@ import java.util.Random;
 public class Loops {
     public static void main(String[] args) {
         int randomNum = new Random().nextInt(10) + 1;
-        int numberOfGuesses = 0;
         int MAX_ALLOWED_TRIES = 4;
         String guessedNumStr = null;
 
-        System.out.println(randomNum);
-
-        do {
+        for (int numberOfGuesses = 0; numberOfGuesses < MAX_ALLOWED_TRIES; numberOfGuesses++) {
             guessedNumStr = System.console()
                     .readLine("Please guess a number between 1 and 10 inclusively: ");
 
-            numberOfGuesses++;
+            if (guessedNumStr.equals("q")) {
+                break;
+            }
 
-            if (numberOfGuesses >= MAX_ALLOWED_TRIES) {
-                System.out.printf("You only had 4 guesses. The correct number was %d.%nGAME OVER%n", randomNum);
+            if (numberOfGuesses + 1 == MAX_ALLOWED_TRIES) {
+                System.out.printf("You only had %d guesses. The correct number was %d.%nGAME OVER%n",
+                        MAX_ALLOWED_TRIES, randomNum);
 
                 break;
             }
@@ -31,10 +31,10 @@ public class Loops {
                             randomNum, numberOfGuesses, tryText);
 
                     break;
-                } else {
-                    System.out.println("You didn't get it!");
                 }
+
+                System.out.println("You didn't get it!");
             }
-        } while (!guessedNumStr.equals("q"));
+        }
     }
 }
